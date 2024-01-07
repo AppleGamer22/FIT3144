@@ -586,7 +586,7 @@ Blockly.JavaScript["flip_l"] = function (block) {
     const individual = ${variableIndividual}.map(x => x);
     const n = individual.length;
     individual.l = ${variableL};
-    let positions = sample([...Array(n).keys()], individual.l);
+    let positions = sample([...Array(n).keys()], Math.round(individual.l));
     for (const i of positions) {
       individual[i] = 1 - individual[i];
     }
@@ -644,7 +644,7 @@ Blockly.JavaScript["sample_normal_positive"] = function (block) {
         variableVariance +
         ");",
       "   let sample = 0;",
-      "   while (sample <= 0) sample = Math.round(distribution.ppf(Math.random()));",
+      "   while (sample <= 0) sample = distribution.ppf(Math.random());",
       "   return sample;",
       "}",
     ]
