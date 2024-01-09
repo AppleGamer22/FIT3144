@@ -586,7 +586,8 @@ Blockly.JavaScript["flip_l"] = function (block) {
     const individual = ${variableIndividual}.map(x => x);
     const n = individual.length;
     individual.l = ${variableL};
-    let positions = sample([...Array(n).keys()], Math.round(individual.l));
+    const roundedL = !Math.round(individual.l) ? 1 : Math.round(individual.l);
+    let positions = sample([...Array(n).keys()], roundedL);
     for (const i of positions) {
       individual[i] = 1 - individual[i];
     }
@@ -666,7 +667,7 @@ Blockly.JavaScript["minimum"] = function (block) {
   );
 
   var code = `(function() {
-    return Math.min(Math.round(${variableA}), Math.round(${variableB}));
+    return Math.min(${variableA}, ${variableB});
   })()`;
   return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
 };
